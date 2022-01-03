@@ -1,25 +1,25 @@
 # Serviio docker
 #
-# Run with: docker run --rm --name serviio -d -p 23423:23423/tcp -p 23424:23424/tcp -p 8895:8895/tcp -p 1900:1900/udp -v /etc/localtime:/etc/localtime:ro riftbit/serviio
+# Run with: docker run --rm --name serviio -d -p 23423:23423/tcp -p 23424:23424/tcp -p 8895:8895/tcp -p 1900:1900/udp -v /etc/localtime:/etc/localtime:ro onmouseout/serviio
 
-FROM alpine:3.12
+FROM alpine:3.15
 
-MAINTAINER "[riftbit] ErgoZ <ergozru@gmail.com>"
+MAINTAINER "Manfred Schreistetter <onmouseout@gmx.de>"
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG VERSION=2.2
+ARG VERSION=2.2.1
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
 	org.label-schema.name="DLNA Serviio Container" \
 	org.label-schema.description="DLNA Serviio Container" \
-	org.label-schema.url="https://riftbit.com/" \
+	org.label-schema.url="https://schreistetter.com/" \
 	org.label-schema.vcs-ref=$VCS_REF \
-	org.label-schema.vcs-url="https://hub.docker.com/r/riftbit/serviio/" \
-	org.label-schema.vendor="[riftbit] ErgoZ <ergozru@gmail.com>" \
+	org.label-schema.vcs-url="https://hub.docker.com/r/onmouseout/serviio/" \
+	org.label-schema.vendor="Manfred Schreistetter <onmouseout@gmx.de>" \
 	org.label-schema.version=$VERSION \
 	org.label-schema.schema-version="1.0" \
-	maintainer="[riftbit] ErgoZ <ergozru@gmail.com>"
+	maintainer="Manfred Schreistetter <onmouseout@gmx.de>"
 
 ARG FFMPEG_VERSION=4.3.2
 ARG JASPER_VERSION=2.0.14
@@ -31,9 +31,7 @@ ENV JAVA_HOME="/usr"
 #    echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories; \
 
 # Prepare APK CDNs
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.11/community" >> /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.10/main" >> /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.10/community" >> /etc/apk/repositories && \
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.15/community" >> /etc/apk/repositories && \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk update && apk upgrade && \
     apk add --no-cache --update \
