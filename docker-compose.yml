@@ -1,13 +1,14 @@
-version: '2'
+version: '3'
 
 services:
   serviio:
-    image: onmouseout/docker-serviio:latest
+    image: docker-serviio:latest
+    network_mode: host
+    dns:
+    - 192.168.178.200
     ports:
      - "23423:23423/tcp"
      - "8895:8895/tcp"
      - "1900:1900/udp"
     volumes:
-     - /srv/docker/serviio/library:/opt/serviio/library
-     - /srv/docker/serviio/plugins:/opt/serviio/plugins
-     - /srv/docker/serviio/log:/opt/serviio/log
+     - /home/me/movies:/media/serviio
